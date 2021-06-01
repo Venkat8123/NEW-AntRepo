@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="${project.name}" default="init" basedir=".">
+
 	<property file="./build.properties" />
 	
-	<target name="init" depends="prepare,compile,war" description="Clean work dirs, then compile and create a WAR then create the EAR">
+	<target name="init" depends="prepare,compile,war,ear" description="Clean work dirs, then compile and create a WAR then create the EAR">
 		<echo> Build completed for ${project.name} </echo>
 	</target>
 	
@@ -14,7 +15,6 @@
 		<pathelement path="${work.home}"/>
 	</path>
 
-	
 	<target name="prepare"  description="Create working dirs and copy static files to work dir">
 		<mkdir  dir="${dist.home}"/>
 		<mkdir  dir="${work.home}/WEB-INF/classes"/>
@@ -46,6 +46,7 @@
 		<pathelement path="${work.home}"/>
 	</path>
 
+	
 	<target name="war" 
 	          description="Create WAR file for binary distribution">
 		<war destfile="${war.home}/${app.name}.war" webxml="${work.home}/WEB-INF/web.xml">
